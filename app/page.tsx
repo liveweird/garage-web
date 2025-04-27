@@ -6,12 +6,29 @@ import styles from "./page.module.css";
 import TopMenu from "./components/TopMenu";
 import LeftMenu from './components/LeftMenu';
 
+type HomePageState = {
+  selectedCategoryId: string;
+  selectedItemId: string;
+};
+
 export default function Home() {
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
+  const [state, setState] = useState<HomePageState>({
+    selectedCategoryId: '',
+    selectedItemId: '',
+  });
 
   function handleCategorySelect(newCategoryId: string) {
-    setSelectedCategoryId(newCategoryId);
-    console.log('Category changed to:', newCategoryId);
+    setState({
+      ...state,
+      selectedCategoryId: newCategoryId,
+    });
+  }
+
+  function handleItemSelect(newItemId: string) {
+    setState({
+      ...state,
+      selectedItemId: newItemId,
+    });
   }
 
   return (
@@ -20,16 +37,20 @@ export default function Home() {
         <div className="container">
           <div className="row">
             <TopMenu 
-              selectedCategoryId={selectedCategoryId} 
+              selectedCategoryId={state.selectedCategoryId} 
               onCategorySelect={handleCategorySelect}
             />
           </div>
           <div className="row">
             <div className="col-md-3 bg-light">
-              <LeftMenu />
+              <LeftMenu
+                selectedCategoryId={state.selectedCategoryId}
+                selectedItemId={state.selectedItemId}
+                onItemSelect={handleItemSelect}
+              />
             </div>
             <div className="col-md-9">
-              Content goes here
+              {state.selectedCategoryId}
             </div>
           </div>
         </div>
