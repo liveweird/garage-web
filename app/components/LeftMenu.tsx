@@ -1,4 +1,4 @@
-import { Item, getItems } from "../services/GetItems";
+import { getItems } from "../services/GetItems";
 
 type LeftMenuProps = {
   selectedCategoryId: string;
@@ -7,10 +7,16 @@ type LeftMenuProps = {
 };
 
 export default function LeftMenu({ selectedCategoryId, selectedItemId, onItemSelect }: LeftMenuProps) {
-  const items = getItems().filter(item => item.categoryId === selectedCategoryId);
+  const items =
+    selectedCategoryId !== '' ?
+      getItems().filter(item => item.categoryId === selectedCategoryId) :
+      getItems();
 
   return (
     <ul className="nav flex-column">
+      <li className="nav-item">
+        <button className="nav-link disabled" aria-disabled="true">Selected category: {selectedCategoryId !== '' ? selectedCategoryId : "all"}</button>
+      </li>
       {items.map((item) => (
         <li key={item.id} className="nav-item">
           <button 

@@ -21,6 +21,7 @@ export default function Home() {
     setState({
       ...state,
       selectedCategoryId: newCategoryId,
+      selectedItemId: '',
     });
   }
 
@@ -34,10 +35,9 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
             <TopMenu 
-              selectedCategoryId={state.selectedCategoryId} 
               onCategorySelect={handleCategorySelect}
             />
           </div>
@@ -50,7 +50,13 @@ export default function Home() {
               />
             </div>
             <div className="col-md-9">
-              {state.selectedCategoryId}
+              {
+                state.selectedCategoryId === '' ?
+                <div className="text-left">Select a category</div> :
+                state.selectedItemId === '' ?
+                <div className="text-left">Select an item</div> :
+                <div>{state.selectedItemId}</div>
+              }
             </div>
           </div>
         </div>
