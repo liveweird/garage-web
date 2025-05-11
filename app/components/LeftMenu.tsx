@@ -1,4 +1,6 @@
-import { getItems } from "../services/GetItems";
+import { useState } from 'react';
+
+import { getItems, Item } from "../services/GetItems";
 
 type LeftMenuProps = {
   selectedCategoryId: string;
@@ -6,18 +8,60 @@ type LeftMenuProps = {
   onItemSelect: (newItemId: string) => void;
 };
 
+type LeftMenuState = {
+  itemFilter: string;
+};
+
 export default function LeftMenu({ selectedCategoryId, selectedItemId, onItemSelect }: LeftMenuProps) {
-  const items =
-    selectedCategoryId !== '' ?
+  const [state, setState] = useState<LeftMenuState>({
+    itemFilter: '',
+  });
+
+  function getFilteredItems() : Item[] {
+    const byCategory = selectedCategoryId !== '' ?
       getItems().filter(item => item.categoryId === selectedCategoryId) :
       getItems();
+
+    const andFiltered = state.itemFilter !== '' ?
+      byCategory.filter(item => item.name.toLowerCase().includes(state.itemFilter.toLowerCase())) :
+      byCategory;
+
+    return andFiltered;
+  }
+
+  function onFilterChange(newFilter: string) {
+    setState({
+      ...state,
+      itemFilter: newFilter,
+    });
+  }
 
   return (
     <ul className="nav flex-column">
       <li className="nav-item">
         <button className="nav-link disabled" aria-disabled="true">Selected category: {selectedCategoryId !== '' ? selectedCategoryId : "all"}</button>
       </li>
-      {items.map((item) => (
+      <li className="nav-item">
+        <form className="d-flex" role="search">
+          <input
+            className="form-control me-2"
+            type="search"
+            placeholder="Filter"
+            aria-label="Filter"
+            value={state.itemFilter}
+            onChange={e => {
+              onFilterChange(e.target.value);
+            }}
+          />
+          <button className="btn btn-primary" type="reset" onClick={
+            e => {
+              e.preventDefault();
+              onFilterChange('');
+            }
+          }>Clear</button>
+        </form>
+      </li>
+      {getFilteredItems().map((item) => (
         <li key={item.id} className="nav-item">
           <button 
             className={`nav-link ${selectedItemId === item.id ? 'active' : ''}`}

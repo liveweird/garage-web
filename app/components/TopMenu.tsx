@@ -3,10 +3,11 @@
 import { getCategories }from "../services/GetCategories";
 
 type TopMenuProps = {
+  selectedCategoryId: string;
   onCategorySelect: (newCategoryId: string) => void;
 };
 
-export default function TopMenu({ onCategorySelect }: TopMenuProps) {
+export default function TopMenu({ selectedCategoryId, onCategorySelect }: TopMenuProps) {
   return (
     <>
       <nav className="navbar sticky-top bg-primary navbar-expand-lg" data-bs-theme="dark">
@@ -20,8 +21,8 @@ export default function TopMenu({ onCategorySelect }: TopMenuProps) {
               {getCategories().map((item, index) => (
                 <li key={index} className="nav-item">
                   <button 
-                    className={`nav-link ${item.isDefault ? 'active' : ''}`}
-                    aria-current={item.isDefault ? 'page' : undefined}
+                    className={`nav-link ${item.id === selectedCategoryId ? 'active' : ''}`}
+                    aria-current={item.id === selectedCategoryId ? 'page' : undefined}
                     onClick={() => onCategorySelect(item.id)}>
                     {item.name}
                   </button>

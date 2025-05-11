@@ -38,6 +38,7 @@ export default function Home() {
         <div className="container-fluid">
           <div className="row">
             <TopMenu 
+              selectedCategoryId={state.selectedCategoryId}
               onCategorySelect={handleCategorySelect}
             />
           </div>
