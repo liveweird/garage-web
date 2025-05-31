@@ -4,15 +4,15 @@ import { getItems, Item } from "../services/GetItems";
 
 type LeftMenuProps = {
   selectedCategoryId: string;
-  selectedItemId: string;
-  onItemSelect: (newItemId: string) => void;
+  selectedItem: Item | null;
+  onItemSelect: (newItem: Item) => void;
 };
 
 type LeftMenuState = {
   itemFilter: string;
 };
 
-export default function LeftMenu({ selectedCategoryId, selectedItemId, onItemSelect }: LeftMenuProps) {
+export default function LeftMenu({ selectedCategoryId, selectedItem, onItemSelect }: LeftMenuProps) {
   const [state, setState] = useState<LeftMenuState>({
     itemFilter: '',
   });
@@ -64,9 +64,9 @@ export default function LeftMenu({ selectedCategoryId, selectedItemId, onItemSel
       {getFilteredItems().map((item) => (
         <li key={item.id} className="nav-item">
           <button 
-            className={`nav-link ${selectedItemId === item.id ? 'active' : ''}`}
-            aria-current={selectedItemId === item.id ? 'page' : undefined}
-            onClick={() => onItemSelect(item.id)}
+            className={`nav-link ${selectedItem !== null && selectedItem.id === item.id ? 'active' : ''}`}
+            aria-current={selectedItem !== null && selectedItem.id === item.id ? 'page' : undefined}
+            onClick={() => onItemSelect(item)}
           >
             {item.name}
           </button>
