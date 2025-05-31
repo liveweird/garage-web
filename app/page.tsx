@@ -52,11 +52,11 @@ export default function Home() {
             </div>
             <div className="col-md-9">
               {
-                state.selectedCategoryId === '' ?
-                <div className="text-left">Select a category</div> :
-                state.selectedItemId === '' ?
+                state.selectedItemId !== '' ?
+                <div>{state.selectedItemId}</div> :
+                state.selectedCategoryId !== '' ?
                 <div className="text-left">Select an item</div> :
-                <div>{state.selectedItemId}</div>
+                <div className="text-left">Select a category</div>
               }
             </div>
           </div>
