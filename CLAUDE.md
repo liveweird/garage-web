@@ -57,3 +57,4 @@ page.tsx (main state)
 ### UI Framework
 
 Uses Bootstrap 5.3.3 with custom CSS modules for styling. Components use Bootstrap classes extensively for responsive layout and theming.
+- Don't add new npm dependencies without asking. Don't use ready-to-use visual components, except the ones in Bootstrap. Don't use JS wrapper libraries for Bootstrap. Always use descriptive variable names.
