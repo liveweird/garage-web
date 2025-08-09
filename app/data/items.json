@@ -9,7 +9,10 @@
             { "name": "Year", "value": "2024" }
         ],
         "description": "Description of Book #1",
-        "images": ["image11.jpg", "image12.jpg", "image13.jpg"]
+        "images": [
+            "https://no-kill-switch.ghost.io/content/images/size/w1200/format/webp/2024/01/hands.png",
+            "https://no-kill-switch.ghost.io/content/images/size/w1200/format/webp/2023/12/hawthorne.png",
+            "https://no-kill-switch.ghost.io/content/images/size/w1200/format/webp/2023/09/intense.png"]
     },
     {
         "id": "2",
@@ -21,7 +24,10 @@
             { "name": "Year", "value": "2023" }
         ],
         "description": "Description of Book #2",
-        "images": ["image21.jpg", "image22.jpg", "image23.jpg"]
+        "images": [
+            "https://no-kill-switch.ghost.io/content/images/size/w1200/format/webp/2022/05/clock.png",
+            "https://no-kill-switch.ghost.io/content/images/size/w1200/format/webp/2025/08/atm.png",
+            "https://no-kill-switch.ghost.io/content/images/size/w1200/format/webp/2025/06/storyteller.png"]
     },
     {
         "id": "3",
@@ -33,7 +39,10 @@
             { "name": "Year", "value": "2022" }
         ],
         "description": "Description of Book #3",
-        "images": ["image31.jpg", "image32.jpg", "image33.jpg"]
+        "images": [
+            "https://no-kill-switch.ghost.io/content/images/size/w1200/format/webp/2025/05/entropy.png",
+            "https://no-kill-switch.ghost.io/content/images/size/w1200/format/webp/2021/09/letters.jpg",
+            "https://no-kill-switch.ghost.io/content/images/size/w1200/format/webp/2025/04/dice_canva.png"]
     },
     {
         "id": "4",
@@ -45,7 +54,11 @@
             { "name": "Players", "value": "2-4" }
         ],
         "description": "Description of Game #1",
-        "images": ["image41.jpg", "image42.jpg", "image43.jpg"]
+        "images": [
+            "https://no-kill-switch.ghost.io/content/images/size/w1200/format/webp/2025/03/digging.png",
+            "https://no-kill-switch.ghost.io/content/images/size/w1200/format/webp/2025/01/chiseling.png",
+            "https://no-kill-switch.ghost.io/content/images/size/w1200/format/webp/2024/12/dc_9.jpg"
+        ]
     },
     {
         "id": "5",
@@ -54,6 +67,10 @@
         "price": 500,
         "attributes": [],
         "description": "Description of Other #1",
-        "images": ["image51.jpg", "image52.jpg", "image53.jpg"]
+        "images": [
+            "https://no-kill-switch.ghost.io/content/images/size/w1200/format/webp/2024/10/cccc.png",
+            "https://no-kill-switch.ghost.io/content/images/size/w1200/format/webp/2024/09/painting.png",
+            "https://no-kill-switch.ghost.io/content/images/size/w1200/format/webp/2024/09/freedom.png"
+        ]
     }
 ]
