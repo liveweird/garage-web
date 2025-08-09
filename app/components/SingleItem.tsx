@@ -9,7 +9,7 @@ export default function SingleItem({ item }: { item: Item }) {
     }, []);
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid mt-3">
             <div className="row mb-3">
                 <div className="col-md-3"><strong>Name:</strong></div>
                 <div className="col-md-9">{item.name}</div>
@@ -70,23 +70,12 @@ export default function SingleItem({ item }: { item: Item }) {
                     )}
                 </div>
             </div>
-            <div className="row mb-3">
-                <div className="col-md-3"><strong>Attributes:</strong></div>
-                <div className="col-md-9">
-                    {item.attributes.length > 0 ? (
-                        <div>
-                            {item.attributes.map((attribute, index) => (
-                                <div key={index} className="row mb-2">
-                                    <div className="col-md-4"><strong>{attribute.name}:</strong></div>
-                                    <div className="col-md-8">{attribute.value}</div>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <span className="text-muted">No attributes</span>
-                    )}
+            {item.attributes.map((attribute, index) => (
+                <div key={index} className="row mb-3">
+                    <div className="col-md-3"><strong>{attribute.name}:</strong></div>
+                    <div className="col-md-9">{attribute.value}</div>
                 </div>
-            </div>
+            ))}
         </div>
     );
 }
