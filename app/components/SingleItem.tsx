@@ -1,13 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
 import { Item } from "../services/GetItems";
 
 export default function SingleItem({ item }: { item: Item }) {
-    useEffect(() => {
-        import('bootstrap/dist/js/bootstrap.bundle.min.js');
-    }, []);
-
     return (
         <div className="container-fluid mt-3">
             <div className="row mb-3">
