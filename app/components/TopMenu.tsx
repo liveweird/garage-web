@@ -3,13 +3,21 @@
 import { getCategories } from "../services/GetCategories";
 
 type TopMenuProps = {
+  selectedAllCategories: boolean;
   selectedCategoryId: string;
+  selectedWishlist: boolean;
+  onAllCategoriesSelect: () => void;
   onCategorySelect: (newCategoryId: string) => void;
+  onWishlistSelect: () => void;
 };
 
 export default function TopMenu({
+  selectedAllCategories,
   selectedCategoryId,
+  selectedWishlist,
+  onAllCategoriesSelect,
   onCategorySelect,
+  onWishlistSelect,
 }: TopMenuProps) {
   return (
     <>
@@ -36,8 +44,10 @@ export default function TopMenu({
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
               <li className="nav-item me-2">
                 <button
-                  className={`btn ${selectedCategoryId === "" ? "btn-primary" : "btn-outline-light"} rounded-pill px-4`}
-                  onClick={() => onCategorySelect("")}
+                  className={`btn ${selectedAllCategories === true ? "btn-primary" : "btn-outline-light"} rounded-pill px-4`}
+                  onClick={() => {
+                    onAllCategoriesSelect();
+                  }}
                 >
                   <i className="bi bi-grid me-2"></i>
                   All Categories
@@ -50,13 +60,24 @@ export default function TopMenu({
                     aria-current={
                       category.id === selectedCategoryId ? "page" : undefined
                     }
-                    onClick={() => onCategorySelect(category.id)}
+                    onClick={() => {
+                      onCategorySelect(category.id);
+                    }}
                   >
                     {category.name}
                   </button>
                 </li>
               ))}
             </ul>
+            <button
+              className={`btn ${selectedWishlist === true ? "btn-primary" : "btn-outline-light"} rounded-pill px-4`}
+              onClick={() => {
+                onWishlistSelect();
+              }}
+            >
+              <i className="bi bi-heart me-2"></i>
+              Wishlist
+            </button>
           </div>
         </div>
       </nav>

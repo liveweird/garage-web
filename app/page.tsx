@@ -1,29 +1,55 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 import styles from "./page.module.css";
 import TopMenu from "./components/TopMenu";
-import LeftMenu from './components/LeftMenu';
-import SingleItem from './components/SingleItem';
+import LeftMenu from "./components/LeftMenu";
+import SingleItem from "./components/SingleItem";
 
-import { Item } from './services/GetItems';
+import { Item } from "./services/GetItems";
 
 type HomePageState = {
+  selectedAllCategories: boolean;
   selectedCategoryId: string;
+  selectedWishlist: boolean;
   selectedItem: Item | null;
 };
 
 export default function Home() {
   const [state, setState] = useState<HomePageState>({
-    selectedCategoryId: '',
+    selectedAllCategories: true,
+    selectedCategoryId: "",
+    selectedWishlist: false,
     selectedItem: null,
   });
+
+  function handleAllCategoriesSelect() {
+    setState({
+      ...state,
+      selectedAllCategories: true,
+      selectedCategoryId: "",
+      selectedWishlist: false,
+      selectedItem: null,
+    });
+  }
 
   function handleCategorySelect(newCategoryId: string) {
     setState({
       ...state,
+      selectedAllCategories: false,
       selectedCategoryId: newCategoryId,
+      selectedWishlist: false,
+      selectedItem: null,
+    });
+  }
+
+  function handleWishlistSelect() {
+    setState({
+      ...state,
+      selectedAllCategories: false,
+      selectedCategoryId: "",
+      selectedWishlist: true,
       selectedItem: null,
     });
   }
@@ -40,9 +66,13 @@ export default function Home() {
       <main className={styles.main}>
         <div className="container-fluid">
           <div className="row">
-            <TopMenu 
+            <TopMenu
+              selectedAllCategories={state.selectedAllCategories}
               selectedCategoryId={state.selectedCategoryId}
+              selectedWishlist={state.selectedWishlist}
+              onAllCategoriesSelect={handleAllCategoriesSelect}
               onCategorySelect={handleCategorySelect}
+              onWishlistSelect={handleWishlistSelect}
             />
           </div>
           <div className="row">
@@ -54,19 +84,18 @@ export default function Home() {
               />
             </div>
             <div className="col-md-9">
-              {
-                state.selectedItem !== null ?
-                <SingleItem item={state.selectedItem} /> :
-                state.selectedCategoryId !== '' ?
-                <div className="text-left">Select an item</div> :
+              {state.selectedItem !== null ? (
+                <SingleItem item={state.selectedItem} />
+              ) : state.selectedCategoryId !== "" ? (
+                <div className="text-left">Select an item</div>
+              ) : (
                 <div className="text-left">Select a category</div>
-              }
+              )}
             </div>
           </div>
         </div>
       </main>
-      <footer className={styles.footer}>
-      </footer>
+      <footer className={styles.footer}></footer>
     </div>
   );
 }
