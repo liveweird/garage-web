@@ -121,9 +121,6 @@ export default function LeftMenu({
                       ${item.price}
                     </small>
                   </div>
-                  {selectedItem !== null && selectedItem.id === item.id && (
-                    <i className="bi bi-check-circle-fill text-white"></i>
-                  )}
                 </button>
               ))}
             </div>
